@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Aq/jaClbm/w=",
+  "dgSpecHash": "EGJNDBCkzME=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Anton\\source\\repos\\PracApp\\PracApp\\PracApp.csproj",
+  "projectFilePath": "C:\\SoftWare\\Project\\Code\\Kurs\\-PracApp\\PracApp\\PracApp\\PracApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Anton\\.nuget\\packages\\hardcodet.notifyicon.wpf\\2.0.1\\hardcodet.notifyicon.wpf.2.0.1.nupkg.sha512",
     "C:\\Users\\Anton\\.nuget\\packages\\microsoft.win32.systemevents\\9.0.6\\microsoft.win32.systemevents.9.0.6.nupkg.sha512",

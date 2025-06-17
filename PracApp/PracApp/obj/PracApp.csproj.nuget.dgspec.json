@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Anton\\source\\repos\\PracApp\\PracApp\\PracApp.csproj": {}
+    "C:\\SoftWare\\Project\\Code\\Kurs\\-PracApp\\PracApp\\PracApp\\PracApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Anton\\source\\repos\\PracApp\\PracApp\\PracApp.csproj": {
+    "C:\\SoftWare\\Project\\Code\\Kurs\\-PracApp\\PracApp\\PracApp\\PracApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Anton\\source\\repos\\PracApp\\PracApp\\PracApp.csproj",
+        "projectUniqueName": "C:\\SoftWare\\Project\\Code\\Kurs\\-PracApp\\PracApp\\PracApp\\PracApp.csproj",
         "projectName": "PracApp",
-        "projectPath": "C:\\Users\\Anton\\source\\repos\\PracApp\\PracApp\\PracApp.csproj",
+        "projectPath": "C:\\SoftWare\\Project\\Code\\Kurs\\-PracApp\\PracApp\\PracApp\\PracApp.csproj",
         "packagesPath": "C:\\Users\\Anton\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Anton\\source\\repos\\PracApp\\PracApp\\obj\\",
+        "outputPath": "C:\\SoftWare\\Project\\Code\\Kurs\\-PracApp\\PracApp\\PracApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
