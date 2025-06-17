@@ -1,0 +1,28 @@
+﻿<Window x:Class="PracApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PracApp"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        Closing="Window_Closing">
+
+    <Grid>
+        <!-- Основное содержимое вашего окна -->
+
+        <!-- Иконка в трее (видна только в дизайнере, в runtime работает в фоне) -->
+        <tb:TaskbarIcon 
+            x:Name="TrayIcon"
+            IconSource="C:\Users\Anton\Pictures\Castle.png"
+            ToolTipText="Мое приложение">
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Развернуть" Click="RestoreWindow_Click"/>
+                    <MenuItem Header="Выйти" Click="Exit_Click"/>
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
+    </Grid>
+</Window>
