@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PracServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c153031c561d8448e96860453b42fe6ab5fd5598")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+72b5324ca58ca0dd158871e19b7bf6fbefecc970")]
 [assembly: System.Reflection.AssemblyProductAttribute("PracServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PracServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
