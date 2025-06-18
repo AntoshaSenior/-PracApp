@@ -3,30 +3,52 @@
   "WorkspaceRootPath": "C:\\SoftWare\\Project\\Code\\Kurs\\-PracApp\\PracApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{55C82E93-1402-463A-8E5C-90C4723AC136}|Server\\Server.csproj|c:\\software\\project\\code\\kurs\\-pracapp\\pracapp\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55C82E93-1402-463A-8E5C-90C4723AC136}|Server\\Server.csproj|solutionrelative:server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0025486A-2330-4174-BE57-467A4DE9D3F3}|PracApp\\PracApp.csproj|c:\\software\\project\\code\\kurs\\-pracapp\\pracapp\\pracapp\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0025486A-2330-4174-BE57-467A4DE9D3F3}|PracApp\\PracApp.csproj|solutionrelative:pracapp\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0025486A-2330-4174-BE57-467A4DE9D3F3}|PracApp\\PracApp.csproj|c:\\software\\project\\code\\kurs\\-pracapp\\pracapp\\pracapp\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0025486A-2330-4174-BE57-467A4DE9D3F3}|PracApp\\PracApp.csproj|solutionrelative:pracapp\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
     {
-      "Orientation": 1,
+      "Orientation": 0,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 200,
+          "DockedWidth": 138,
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\SoftWare\\Project\\Code\\Kurs\\-PracApp\\PracApp\\Server\\Program.cs",
-              "RelativeDocumentMoniker": "Server\\Program.cs",
-              "ToolTip": "C:\\SoftWare\\Project\\Code\\Kurs\\-PracApp\\PracApp\\Server\\Program.cs",
-              "RelativeToolTip": "Server\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAVAAAAAAAAAA==",
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\SoftWare\\Project\\Code\\Kurs\\-PracApp\\PracApp\\PracApp\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "PracApp\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\SoftWare\\Project\\Code\\Kurs\\-PracApp\\PracApp\\PracApp\\MainWindow.xaml.cs",
+              "RelativeToolTip": "PracApp\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T11:07:28.479Z",
+              "WhenOpened": "2025-06-18T17:33:04.608Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 262,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\SoftWare\\Project\\Code\\Kurs\\-PracApp\\PracApp\\PracApp\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "PracApp\\MainWindow.xaml",
+              "ToolTip": "C:\\SoftWare\\Project\\Code\\Kurs\\-PracApp\\PracApp\\PracApp\\MainWindow.xaml",
+              "RelativeToolTip": "PracApp\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-18T16:28:22.369Z",
               "EditorCaption": ""
             }
           ]
