@@ -1,11 +1,45 @@
 ﻿using Hardcodet.Wpf.TaskbarNotification;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 using System.Windows;
 
 namespace PracApp
 {
     public partial class MainWindow : Window
     {
+        
+        [DllImport("user32.dll")]
+        static extern bool SystemParametersInfo(int uiAction, int uiParam, ref RECT pvParam, int fWinIni);
+
+        const int SPI_GETWORKAREA = 0x0030;
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct RECT
+        {
+            public int Left;
+            public int Top;
+            public int Right;
+            public int Bottom;
+        }
+
+        private void MaximizeToTaskbar()
+        {
+            RECT workArea = new RECT();
+            SystemParametersInfo(SPI_GETWORKAREA, 0, ref workArea, 0);
+
+            
+            int workAreaHeight = workArea.Bottom - workArea.Top;
+            int workAreaWidth = workArea.Right - workArea.Left;
+
+            
+
+
+            this.Left = workArea.Left;
+            this.Top = workArea.Top;
+            this.Width = workAreaWidth;
+            this.Height = workAreaHeight;
+            this.WindowState = WindowState.Normal;
+        }
         public MainWindow()
         {
             InitializeComponent();
@@ -42,7 +76,7 @@ namespace PracApp
             }
             else
             {
-                this.WindowState = WindowState.Maximized;
+                MaximizeToTaskbar();
             }
         }
 
@@ -50,5 +84,8 @@ namespace PracApp
         {
             if(this.WindowState != WindowState.Minimized) this.WindowState = WindowState.Minimized;
         }
+
+
+        
     }
 }
