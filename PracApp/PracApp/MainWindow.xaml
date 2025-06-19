@@ -43,7 +43,10 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            
+            <StackPanel Margin="10">
+                <Button Content="Запустить блокнот" Click="StartOrTrackProcess_Click" Width="150"/>
+                <TextBlock Name="StatusText" Margin="10" />
+            </StackPanel>
         </Grid>
 
         

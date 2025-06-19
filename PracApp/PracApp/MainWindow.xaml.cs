@@ -1,5 +1,6 @@
 ﻿using Hardcodet.Wpf.TaskbarNotification;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows;
 
@@ -12,6 +13,9 @@ namespace PracApp
         static extern bool SystemParametersInfo(int uiAction, int uiParam, ref RECT pvParam, int fWinIni);
 
         const int SPI_GETWORKAREA = 0x0030;
+
+        private Process trackedProcess;
+        private DateTime startTime;
 
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT
@@ -85,7 +89,54 @@ namespace PracApp
             if(this.WindowState != WindowState.Minimized) this.WindowState = WindowState.Minimized;
         }
 
+        private async void StartOrTrackProcess_Click(object sender, RoutedEventArgs e)
+        {
+            string processName = "notepad";
+            var processes = Process.GetProcessesByName(processName);
 
-        
+            if (processes.Length > 0)
+            {
+                trackedProcess = processes[0];
+                startTime = trackedProcess.StartTime;
+            }
+            else
+            {
+                trackedProcess = new Process();
+                trackedProcess.StartInfo.FileName = "notepad.exe";
+                trackedProcess.Start();
+                startTime = trackedProcess.StartTime;
+
+            }
+
+            var timer = new System.Windows.Threading.DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += (s, args) =>
+            {
+                if (trackedProcess.HasExited)
+                {
+                    timer.Stop();
+
+                    var endTime = DateTime.Now;
+                    var duration = endTime - startTime;
+                    StatusText.Text = $"Процесс завершен. Работал {duration.TotalSeconds:F2} секунд.";
+                }
+                else
+                {
+                    var currentDuration = DateTime.Now - startTime;
+                    StatusText.Text = $"Процесс работает. Время: {currentDuration.ToString(@"hh\:mm\:ss")}";
+                }
+            };
+
+            timer.Start();
+
+
+
+
+
+            await Task.Run(() => trackedProcess.WaitForExit());
+        }
+
+
+
     }
 }
