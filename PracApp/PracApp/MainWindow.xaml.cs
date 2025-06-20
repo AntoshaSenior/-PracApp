@@ -3,19 +3,21 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Input;
 
 namespace PracApp
 {
     public partial class MainWindow : Window
     {
-        
+
         [DllImport("user32.dll")]
         static extern bool SystemParametersInfo(int uiAction, int uiParam, ref RECT pvParam, int fWinIni);
 
         const int SPI_GETWORKAREA = 0x0030;
 
-        private Process trackedProcess;
+        private Process? trackedProcess;
         private DateTime startTime;
+        private List<Process>? LProcess;
 
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT
@@ -31,11 +33,11 @@ namespace PracApp
             RECT workArea = new RECT();
             SystemParametersInfo(SPI_GETWORKAREA, 0, ref workArea, 0);
 
-            
+
             int workAreaHeight = workArea.Bottom - workArea.Top;
             int workAreaWidth = workArea.Right - workArea.Left;
 
-            
+
 
 
             this.Left = workArea.Left;
@@ -47,6 +49,24 @@ namespace PracApp
         public MainWindow()
         {
             InitializeComponent();
+            AddAllTrackedProcesses();
+        }
+
+        public void AddAllTrackedProcesses()
+        {
+            var topProcesses = Process.GetProcesses()
+                .OrderByDescending(p => p.WorkingSet64)
+                .Take(50)
+                .Select(p => new
+                {
+                    Name = p.ProcessName,
+                    MemoryMB = p.WorkingSet64 / 1024 / 1024
+                })
+                .ToList();
+
+            // Предположу, что у вас есть какой-то контроль или отображение для этих данных
+            // Например, привязка к DataGrid или ListBox
+            dt.ItemsSource = topProcesses;
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
@@ -86,7 +106,7 @@ namespace PracApp
 
         private void MiniButt_Click(object sender, RoutedEventArgs e)
         {
-            if(this.WindowState != WindowState.Minimized) this.WindowState = WindowState.Minimized;
+            if (this.WindowState != WindowState.Minimized) this.WindowState = WindowState.Minimized;
         }
 
         private async void StartOrTrackProcess_Click(object sender, RoutedEventArgs e)
@@ -136,7 +156,12 @@ namespace PracApp
             await Task.Run(() => trackedProcess.WaitForExit());
         }
 
-
-
+        private void TopPanel_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+        }
     }
 }
