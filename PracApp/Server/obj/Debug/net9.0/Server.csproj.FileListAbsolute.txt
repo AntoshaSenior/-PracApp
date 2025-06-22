@@ -119,3 +119,5 @@ C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\Server\bin\Debug\net9.0\Microsoft
 C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\Server\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Physical.dll
 C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\Server\bin\Debug\net9.0\Microsoft.Extensions.FileSystemGlobbing.dll
 C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\Server\bin\Debug\net9.0\appsettings.json
+C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\Server\bin\Debug\net9.0\ContextLib.dll
+C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\Server\bin\Debug\net9.0\ContextLib.pdb

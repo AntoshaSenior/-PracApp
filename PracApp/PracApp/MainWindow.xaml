@@ -10,7 +10,9 @@
         Closing="Window_Closing" WindowStyle="None" AllowsTransparency="True">
 
     <Grid>
+        
         <Grid>
+           
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -19,18 +21,17 @@
 
             <Grid Grid.Row="0" MouseLeftButtonDown="TopPanel_MouseLeftButtonDown" Background="#FF828282">
                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right">
-                    <Button x:Name="MiniButt" Click="MiniButt_Click" Content="-" Width="30"></Button>
-                    <Button x:Name="MaxOrNormAppButt" Click="MaxOrNormAppButt_Click" Content="O" Width="30"></Button>
-                    <Button x:Name="CloseAppButt" Click="CloseAppButt_Click" Content="X" Width="30"></Button>
+                    <Button x:Name="MiniButt" Click="MiniButt_Click" Content="_" Width="40"></Button>
+                    <Button x:Name="MaxOrNormAppButt" Click="MaxOrNormAppButt_Click" Content="O" Width="40"></Button>
+                    <Button x:Name="CloseAppButt" Click="CloseAppButt_Click" Content="X" Width="40" Cursor="Hand"></Button>
                 </StackPanel>
             </Grid>
 
             <Grid Grid.Row="1">
-                <StackPanel Margin="10">
-                    <Button Content="Запустить блокнот" Click="StartOrTrackProcess_Click" Width="150"/>
-                    <TextBlock Name="StatusText" Margin="10" />
-                    <DataGrid x:Name="dt" Width="400" Height="200" ></DataGrid>
-                </StackPanel>
+                <Frame x:Name="NavFrame">
+
+                </Frame>
+                
             </Grid>
         </Grid>
         

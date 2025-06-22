@@ -1,0 +1,16 @@
+C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\ContextLib\bin\Debug\net9.0\appsettings.json
+C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\ContextLib\bin\Debug\net9.0\ContextLib.deps.json
+C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\ContextLib\bin\Debug\net9.0\ContextLib.runtimeconfig.json
+C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\ContextLib\bin\Debug\net9.0\ContextLib.dll
+C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\ContextLib\bin\Debug\net9.0\ContextLib.pdb
+C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\ContextLib\obj\Debug\net9.0\ContextLib.csproj.AssemblyReference.cache
+C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\ContextLib\obj\Debug\net9.0\ContextLib.GeneratedMSBuildEditorConfig.editorconfig
+C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\ContextLib\obj\Debug\net9.0\ContextLib.AssemblyInfoInputs.cache
+C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\ContextLib\obj\Debug\net9.0\ContextLib.AssemblyInfo.cs
+C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\ContextLib\obj\Debug\net9.0\ContextLib.csproj.CoreCompileInputs.cache
+C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\ContextLib\obj\Debug\net9.0\ContextLib.sourcelink.json
+C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\ContextLib\obj\Debug\net9.0\ContextLib.dll
+C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\ContextLib\obj\Debug\net9.0\refint\ContextLib.dll
+C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\ContextLib\obj\Debug\net9.0\ContextLib.pdb
+C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\ContextLib\obj\Debug\net9.0\ContextLib.genruntimeconfig.cache
+C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\ContextLib\obj\Debug\net9.0\ref\ContextLib.dll

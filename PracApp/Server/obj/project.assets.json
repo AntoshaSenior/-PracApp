@@ -1032,6 +1032,23 @@
         "build": {
           "buildTransitive/net6.0/_._": {}
         }
+      },
+      "ContextLib/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "9.0.6",
+          "Microsoft.Extensions.Configuration": "9.0.6",
+          "Microsoft.Extensions.Configuration.Json": "9.0.6",
+          "Npgsql": "9.0.3",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.4"
+        },
+        "compile": {
+          "bin/placeholder/ContextLib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ContextLib.dll": {}
+        }
       }
     }
   },
@@ -3064,10 +3081,17 @@
         "system.threading.channels.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "ContextLib/1.0.0": {
+      "type": "project",
+      "path": "../ContextLib/ContextLib.csproj",
+      "msbuildProject": "../ContextLib/ContextLib.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "ContextLib >= 1.0.0",
+      "Microsoft.EntityFrameworkCore >= 9.0.6",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.6",
       "Microsoft.Extensions.Configuration >= 9.0.6",
       "Microsoft.Extensions.Configuration.Json >= 9.0.6",
@@ -3107,7 +3131,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\SoftWare\\Project\\Code\\Kurs\\-PracApp\\PracApp\\ContextLib\\ContextLib.csproj": {
+              "projectPath": "C:\\SoftWare\\Project\\Code\\Kurs\\-PracApp\\PracApp\\ContextLib\\ContextLib.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -3126,6 +3154,10 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[9.0.6, )"
+          },
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",

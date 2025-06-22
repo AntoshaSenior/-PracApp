@@ -1,10 +1,13 @@
 ﻿// Чтение конфигурации
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Server.Context;
-using Server.Context.Tables;
+using ContextLib;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
+using System.Text.Json;
+using ContextLib.Context;
+using ContextLib.Context.Tables;
 
 
 namespace Server
@@ -13,30 +16,50 @@ namespace Server
     {
         public static void Main()
         {
-            var configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json").Build();
 
-            IPEndPoint ipPoint = new IPEndPoint(IPAddress.Any, 5433);
-            using Socket socket = new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
-            socket.Bind(ipPoint);
-            socket.Listen(30);
-            Console.WriteLine(ipPoint.Address);
-            Console.WriteLine("Сервер запущен. Ожидание подключений...");
+            TcpListener server = new TcpListener(IPAddress.Any, 6666);
+            server.Start();
+            Console.WriteLine("server start");
+            
+            while (true)
+            {
+                TcpClient client = server.AcceptTcpClient();
+                NetworkStream stream = client.GetStream();
+                byte[] buffer = new byte[1024];
+
+                while (client.Connected)
+                {
+                    int count = stream.Read(buffer, 0, buffer.Length);
+                    string inf = Encoding.Default.GetString(buffer, 0, count);
+                    Console.Write(inf);
+                    Console.WriteLine();
+                    string[] infCom = inf.Split('\n');
+                    AppDbContext dbContext = new AppDbContext();
 
 
-            ServerListener(socket);
+                    var option = new JsonSerializerOptions { WriteIndented = true };
+
+                    List<User> dan = dbContext.Users.Where(u => u.Username == infCom[0] & u.Password == infCom[1]).
+                        Select(u => u).ToList();
+
+                    
+
+                    string json = JsonSerializer.Serialize<User>(dan[0], option);
 
 
+                    User? us = JsonSerializer.Deserialize<User>(json);
+
+                    Console.WriteLine(us.Username);
+
+                    client.Close();
+                }
+
+            }
 
         }
-        public async static void ServerListener(Socket socket)
-        {
-            using Socket client = await socket.AcceptAsync();
+      
 
-            Console.WriteLine($"Адрес подключенного клиента: {client.RemoteEndPoint}");
-        }
-
-        public void dbUsing()
+        public static void dbUsing()
         {
             // Пример использования
             using (var db = new AppDbContext())
