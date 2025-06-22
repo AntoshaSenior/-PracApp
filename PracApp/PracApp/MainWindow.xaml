@@ -10,26 +10,28 @@
         Closing="Window_Closing" WindowStyle="None" AllowsTransparency="True">
 
     <Grid>
-        
+        <Border>
+
+        </Border>
         <Grid>
            
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
 
-            <Grid Grid.Row="0" MouseLeftButtonDown="TopPanel_MouseLeftButtonDown" Background="#FF828282">
+            <Grid Grid.Row="0" MouseLeftButtonDown="TopPanel_MouseLeftButtonDown" Background="Gray">
                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right">
-                    <Button x:Name="MiniButt" Click="MiniButt_Click" Content="_" Width="40"></Button>
-                    <Button x:Name="MaxOrNormAppButt" Click="MaxOrNormAppButt_Click" Content="O" Width="40"></Button>
-                    <Button x:Name="CloseAppButt" Click="CloseAppButt_Click" Content="X" Width="40" Cursor="Hand"></Button>
+                    <Button x:Name="MiniButt" Click="MiniButt_Click" Content="—" Foreground="White" Width="50" Style="{StaticResource MaterialDesignFlatButton}"></Button>
+                    <Button x:Name="MaxOrNormAppButt" Click="MaxOrNormAppButt_Click" Foreground="White" Content="❐" Width="50" Style="{StaticResource MaterialDesignFlatButton}"></Button>
+                    <Button x:Name="CloseAppButt" Click="CloseAppButt_Click" Content="🞩" Foreground="White" Width="50" Style="{StaticResource MaterialDesignFlatButton}"></Button>
                 </StackPanel>
             </Grid>
 
             <Grid Grid.Row="1">
-                <Frame x:Name="NavFrame">
-
+                <Frame x:Name="NavFrame" NavigationUIVisibility="Hidden">
+                    
                 </Frame>
                 
             </Grid>

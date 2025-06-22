@@ -22,4 +22,7 @@
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
 		<PackageReference Include="System.Drawing.Common" Version="9.0.6" />
 	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\ContextLib\ContextLib.csproj" />
+	</ItemGroup>
 </Project>

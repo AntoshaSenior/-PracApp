@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET9_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\PracApp\App.xaml
-3744165777
+5-619822707
 
-81455469587
-234-1240352267
-Frames\AuthPage.xaml;Frames\MainPage.xaml;MainWindow.xaml;
+101879236949
+235-124656090
+Frames\AuthPage.xaml;Frames\FrameForMainFrame\ChatUsers.xaml;Frames\FrameForMainFrame\InformationOfUsersAndActivities.xaml;Frames\MainPage.xaml;MainWindow.xaml;
 
-False
+True
 

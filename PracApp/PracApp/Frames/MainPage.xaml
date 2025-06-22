@@ -9,10 +9,24 @@
       Title="MainPage">
 
     <Grid>
-        <StackPanel Margin="10">
-            <Button Content="Запустить блокнот" Click="StartOrTrackProcess_Click" Width="150"/>
-            <TextBlock Name="StatusText" Margin="10" />
-            <DataGrid x:Name="dt" Width="400" Height="200" ></DataGrid>
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Background="Gray">
+            <StackPanel x:Name="FuncPanel">
+                <Button Content="_-_" Foreground="White" Style="{StaticResource MaterialDesignFlatButton}"></Button>
+                <Button Style="{StaticResource MaterialDesignFlatButton}"></Button>
+                <Button Style="{StaticResource MaterialDesignFlatButton}"></Button>
+            </StackPanel>
+        </Grid>
+        
+        <Grid Grid.Column="1">
+            <Frame x:Name="NavFrame" NavigationUIVisibility="Hidden">
+                
+            </Frame>
+        </Grid>
+        
     </Grid>
 </Page>

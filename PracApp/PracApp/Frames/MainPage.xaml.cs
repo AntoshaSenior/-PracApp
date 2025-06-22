@@ -1,8 +1,13 @@
-﻿using System;
+﻿using ContextLib.Context.Tables;
+using Microsoft.VisualBasic;
+using PracApp.Frames.FrameForMainFrame;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace PracApp.Frames
 {
@@ -21,80 +27,51 @@ namespace PracApp.Frames
     /// </summary>
     public partial class MainPage : Page
     {
-        private Process? trackedProcess;
-        private DateTime startTime;
-        private List<Process>? LProcess;
-
-
-        public MainPage()
+        
+        InformationOfUsersAndActivities IOU;
+        User? user = new User();
+        public MainPage(ref User user)
         {
             InitializeComponent();
-            AddAllTrackedProcesses();
-        }
 
 
-        public void AddAllTrackedProcesses()
-        {
-            var topProcesses = Process.GetProcesses()
-                .OrderByDescending(p => p.WorkingSet64)
-                .Take(50)
-                .Select(p => new
-                {
-                    Name = p.ProcessName,
-                    MemoryMB = p.WorkingSet64 / 1024 / 1024
-                })
-                .ToList();
+            this.user = user;
+            if(user != null)
+                IOU = new InformationOfUsersAndActivities(user);
+            NavFrame.Navigate(IOU);
 
-            
-            dt.ItemsSource = topProcesses;
-        }
-
-
-        private async void StartOrTrackProcess_Click(object sender, RoutedEventArgs e)
-        {
-            string processName = "notepad";
-            var processes = Process.GetProcessesByName(processName);
-
-            if (processes.Length > 0)
+            using var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            try
             {
-                trackedProcess = processes[0];
-                startTime = trackedProcess.StartTime;
+                
+                byte[] buffer = new byte[1024];
+
+                socket.ConnectAsync("127.0.0.1", 6666);
+                buffer = Encoding.UTF8.GetBytes("d");
+                socket.Send(buffer);
+
+                buffer = new byte[1024];
+                int recByte = socket.Receive(buffer);
+                string json = Encoding.UTF8.GetString(buffer).Trim('\0');
+
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+
+                user = JsonSerializer.Deserialize<User>(json, options);
+
+                socket.Close();
+                
             }
-            else
+            catch
             {
-                trackedProcess = new Process();
-                trackedProcess.StartInfo.FileName = "notepad.exe";
-                trackedProcess.Start();
-                startTime = trackedProcess.StartTime;
-
+                
             }
-
-            var timer = new System.Windows.Threading.DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += (s, args) =>
-            {
-                if (trackedProcess.HasExited)
-                {
-                    timer.Stop();
-
-                    var endTime = DateTime.Now;
-                    var duration = endTime - startTime;
-                    StatusText.Text = $"Процесс завершен. Работал {duration.TotalSeconds:F2} секунд.";
-                }
-                else
-                {
-                    var currentDuration = DateTime.Now - startTime;
-                    StatusText.Text = $"Процесс работает. Время: {currentDuration.ToString(@"hh\:mm\:ss")}";
-                }
-            };
-
-            timer.Start();
-
-
-
-
-
-            await Task.Run(() => trackedProcess.WaitForExit());
         }
+
+
+ 
     }
 }

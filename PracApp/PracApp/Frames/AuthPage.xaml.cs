@@ -1,8 +1,10 @@
-﻿using System;
+﻿using ContextLib.Context.Tables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,7 +23,9 @@ namespace PracApp.Frames
     /// </summary>
     public partial class AuthPage : Page
     {
-
+        User? user = new User();
+        Role? role = new Role();
+        Team? team = new Team();
         public AuthPage()
         {
             InitializeComponent();
@@ -31,35 +35,62 @@ namespace PracApp.Frames
         {
             string username = UsernameBox.Text;
             string password = PasswordBox.Text;
+            if (username != "" && password != "")
+                if (SendAuthInfo(username, password))
+                    this.NavigationService.Navigate(new MainPage(ref user));
+                else
+                {
+                    MessageBox.Show("неверные имя пользователя или пароль");
+                }
+            else
+            {
+                MessageBox.Show("заполните поля");
+            }
 
-            SendAuthInfo(username,password);
-            
+            //this.NavigationService.Navigate(new MainPage(user));
         }
 
-        public static async Task SendAuthInfo(string username,string password)
+        public bool SendAuthInfo(string username,string password)
         {
             using var socket = new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
             try
             {
                 string s = string.Concat(username,"\n",password);
-
-                await socket.ConnectAsync("127.0.0.1", 6666);
-
                 byte[] buffer = new byte[1024];
 
-                buffer = Encoding.Default.GetBytes(s);
-
+                socket.ConnectAsync("127.0.0.1", 6666);
+                buffer = Encoding.UTF8.GetBytes(s);
                 socket.Send(buffer);
 
+                buffer = new byte[1024];
+                int recByte = socket.Receive(buffer);
+                string jsonUser = Encoding.UTF8.GetString(buffer).Trim('\0');
+
+                buffer = new byte[1024];
+                recByte = socket.Receive(buffer);
+                string jsonRole = Encoding.UTF8.GetString(buffer).Trim('\0');
+
+                buffer = new byte[1024];
+                recByte = socket.Receive(buffer);
+                string jsonTeam = Encoding.UTF8.GetString(buffer).Trim('\0');
+
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+
+                user = JsonSerializer.Deserialize<User>(jsonUser,options);
+                role = JsonSerializer.Deserialize<Role>(jsonRole,options);
+                team = JsonSerializer.Deserialize<Team>(jsonTeam,options);
+
+
                 socket.Close();
-
-
-                
-
+                return true;
             }
             catch
             {
-                
+                return false;
             }
         }
     }

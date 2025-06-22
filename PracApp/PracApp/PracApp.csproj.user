@@ -5,6 +5,12 @@
     <Compile Update="Frames\AuthPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Frames\FrameForMainFrame\ChatUsers.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Frames\FrameForMainFrame\InformationOfUsersAndActivities.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Frames\MainPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

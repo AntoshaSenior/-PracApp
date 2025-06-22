@@ -7,17 +7,19 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AuthPage">
+      Title="AuthPage" Background="WhiteSmoke">
 
     <Grid>
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" Height="300" Cursor="">
-            <StackPanel>
-                <TextBox materialDesign:HintAssist.Hint="Введите имя пользователя" x:Name="UsernameBox" ></TextBox>
-                <TextBox materialDesign:HintAssist.Hint="Введите пароль" x:Name="PasswordBox" ></TextBox>
-                <Button x:Name="AuthBut" Click="AuthBut_Click" Height="30" Content="Войти"></Button>
-                <TextBox x:Name="txt"/>
-
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" Height="300"  >
+            <StackPanel Background="Gray">
+                <TextBox materialDesign:HintAssist.Hint="Введите имя пользователя" x:Name="UsernameBox" Margin="5 5 5 5">IVN</TextBox>
+                <TextBox materialDesign:HintAssist.Hint="Введите пароль" x:Name="PasswordBox" Margin="5 5 5 5">1212</TextBox>
             </StackPanel>
+
+            <Button x:Name="AuthBut" Click="AuthBut_Click" Height="30" VerticalAlignment="Bottom" Margin="5 5 5 5" Style="{StaticResource MaterialDesignFlatButton}">
+                <TextBlock Foreground="White">Войти</TextBlock>
+            </Button>
+
         </Grid>
     </Grid>
 </Page>
