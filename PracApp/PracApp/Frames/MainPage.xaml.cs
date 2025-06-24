@@ -28,47 +28,59 @@ namespace PracApp.Frames
     public partial class MainPage : Page
     {
         
-        InformationOfUsersAndActivities IOU;
-        User? user = new User();
-        public MainPage(ref User user)
+        InformationOfUsersAndActivities? IOU;
+        
+        
+        public User User { get; set; }
+        public Role Role {  get; set; }
+        public Team Team { get; set; }
+        public UserToProject UserToProject { get; set; }
+        public Project Project { get; set; }
+        public Status Status { get; set; }
+
+
+
+        public MainPage()
         {
             InitializeComponent();
 
 
-            this.user = user;
-            if(user != null)
-                IOU = new InformationOfUsersAndActivities(user);
+            
+            IOU = new InformationOfUsersAndActivities();
             NavFrame.Navigate(IOU);
-
-            using var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            try
-            {
                 
-                byte[] buffer = new byte[1024];
-
-                socket.ConnectAsync("127.0.0.1", 6666);
-                buffer = Encoding.UTF8.GetBytes("d");
-                socket.Send(buffer);
-
-                buffer = new byte[1024];
-                int recByte = socket.Receive(buffer);
-                string json = Encoding.UTF8.GetString(buffer).Trim('\0');
-
-                var options = new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                };
-
-
-                user = JsonSerializer.Deserialize<User>(json, options);
-
-                socket.Close();
+            
                 
-            }
-            catch
-            {
+
+            //using var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            //try
+            //{
                 
-            }
+            //    byte[] buffer = new byte[1024];
+
+            //    socket.ConnectAsync("127.0.0.1", 6666);
+            //    buffer = Encoding.UTF8.GetBytes("d");
+            //    socket.Send(buffer);
+
+            //    buffer = new byte[1024];
+            //    int recByte = socket.Receive(buffer);
+            //    string json = Encoding.UTF8.GetString(buffer).Trim('\0');
+
+            //    var options = new JsonSerializerOptions
+            //    {
+            //        PropertyNameCaseInsensitive = true
+            //    };
+
+
+            //    user = JsonSerializer.Deserialize<User>(json, options);
+
+            //    socket.Close();
+                
+            //}
+            //catch
+            //{
+                
+            //}
         }
 
 

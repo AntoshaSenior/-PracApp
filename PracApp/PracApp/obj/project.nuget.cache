@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "uRN9eij0n6I=",
+  "dgSpecHash": "2Ieaitc5Bhw=",
   "success": true,
   "projectFilePath": "C:\\SoftWare\\Project\\Code\\Kurs\\-PracApp\\PracApp\\PracApp\\PracApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Anton\\.nuget\\packages\\hardcodet.notifyicon.wpf\\2.0.1\\hardcodet.notifyicon.wpf.2.0.1.nupkg.sha512",
     "C:\\Users\\Anton\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\Anton\\.nuget\\packages\\livecharts\\0.9.7\\livecharts.0.9.7.nupkg.sha512",
+    "C:\\Users\\Anton\\.nuget\\packages\\livecharts.wpf\\0.9.7\\livecharts.wpf.0.9.7.nupkg.sha512",
     "C:\\Users\\Anton\\.nuget\\packages\\materialdesigncolors\\5.2.1\\materialdesigncolors.5.2.1.nupkg.sha512",
     "C:\\Users\\Anton\\.nuget\\packages\\materialdesignthemes\\5.2.1\\materialdesignthemes.5.2.1.nupkg.sha512",
     "C:\\Users\\Anton\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
@@ -58,5 +60,30 @@
     "C:\\Users\\Anton\\.nuget\\packages\\system.text.json\\9.0.6\\system.text.json.9.0.6.nupkg.sha512",
     "C:\\Users\\Anton\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Пакет \"LiveCharts 0.9.7\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\", а не целевой платформы проекта \"net9.0-windows7.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "projectPath": "C:\\SoftWare\\Project\\Code\\Kurs\\-PracApp\\PracApp\\PracApp\\PracApp.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\SoftWare\\Project\\Code\\Kurs\\-PracApp\\PracApp\\PracApp\\PracApp.csproj",
+      "libraryId": "LiveCharts",
+      "targetGraphs": [
+        "net9.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Пакет \"LiveCharts.Wpf 0.9.7\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\", а не целевой платформы проекта \"net9.0-windows7.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "projectPath": "C:\\SoftWare\\Project\\Code\\Kurs\\-PracApp\\PracApp\\PracApp\\PracApp.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\SoftWare\\Project\\Code\\Kurs\\-PracApp\\PracApp\\PracApp\\PracApp.csproj",
+      "libraryId": "LiveCharts.Wpf",
+      "targetGraphs": [
+        "net9.0-windows7.0"
+      ]
+    }
+  ]
 }

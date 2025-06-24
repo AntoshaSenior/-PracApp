@@ -56,32 +56,31 @@ namespace Server
                         buffer = Encoding.UTF8.GetBytes(json);
                         stream.Write(buffer, 0, buffer.Length);
 
-                        Console.WriteLine("Role is send");
+                        //Console.WriteLine("Role is send");
 
 
-                        json = JsonSerializer.Serialize<Role>(RoleInf[0], option);
+                        //json = JsonSerializer.Serialize<Role>(RoleInf[0], option);
 
-                        buffer = Encoding.UTF8.GetBytes(json);
-                        stream.Write(buffer, 0, buffer.Length);
+                        //buffer = Encoding.UTF8.GetBytes(json);
+                        //stream.Write(buffer, 0, buffer.Length);
 
-                        Console.WriteLine("Teams is send");
-                        json = JsonSerializer.Serialize<Team>(TeamInf[0], option);
+                        //Console.WriteLine("Teams is send");
+                        //json = JsonSerializer.Serialize<Team>(TeamInf[0], option);
 
-                        buffer = Encoding.UTF8.GetBytes(json);
+                        //buffer = Encoding.UTF8.GetBytes(json);
 
-                        stream.Write(buffer, 0, buffer.Length);
+                        //stream.Write(buffer, 0, buffer.Length);
 
 
-                        stream.Close();
-                        client.Close();
+                        
                     }
                     catch
                     {
                         Console.WriteLine("Error");
-                        stream.Close();
-                        client.Close();
+                        
                     }
-                    
+                    stream.Close();
+                    client.Close();
                 }
 
             }

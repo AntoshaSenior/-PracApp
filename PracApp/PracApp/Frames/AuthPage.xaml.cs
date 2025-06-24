@@ -26,6 +26,11 @@ namespace PracApp.Frames
         User? user = new User();
         Role? role = new Role();
         Team? team = new Team();
+        Status? status = new Status();
+        Project? project = new Project();
+        UserToProject? userToProject = new UserToProject();
+        ContextLib.Context.Tables.Task? task = new ContextLib.Context.Tables.Task();
+        
         public AuthPage()
         {
             InitializeComponent();
@@ -37,7 +42,19 @@ namespace PracApp.Frames
             string password = PasswordBox.Text;
             if (username != "" && password != "")
                 if (SendAuthInfo(username, password))
-                    this.NavigationService.Navigate(new MainPage(ref user));
+                {
+                    MainPage mp = new MainPage();
+                    mp.User = this.user;
+                    mp.Role = this.role;
+                    mp.Team = this.team;
+                    mp.UserToProject = this.userToProject;
+                    mp.Project = this.project;
+                    mp.Status = this.status;
+
+
+                    this.NavigationService.Navigate(mp);
+                }
+                    
                 else
                 {
                     MessageBox.Show("неверные имя пользователя или пароль");
@@ -66,13 +83,13 @@ namespace PracApp.Frames
                 int recByte = socket.Receive(buffer);
                 string jsonUser = Encoding.UTF8.GetString(buffer).Trim('\0');
 
-                buffer = new byte[1024];
-                recByte = socket.Receive(buffer);
-                string jsonRole = Encoding.UTF8.GetString(buffer).Trim('\0');
+                //buffer = new byte[1024];
+                //recByte = socket.Receive(buffer);
+                //string jsonRole = Encoding.UTF8.GetString(buffer).Trim('\0');
 
-                buffer = new byte[1024];
-                recByte = socket.Receive(buffer);
-                string jsonTeam = Encoding.UTF8.GetString(buffer).Trim('\0');
+                //buffer = new byte[1024];
+                //recByte = socket.Receive(buffer);
+                //string jsonTeam = Encoding.UTF8.GetString(buffer).Trim('\0');
 
                 var options = new JsonSerializerOptions
                 {
@@ -81,8 +98,8 @@ namespace PracApp.Frames
 
 
                 user = JsonSerializer.Deserialize<User>(jsonUser,options);
-                role = JsonSerializer.Deserialize<Role>(jsonRole,options);
-                team = JsonSerializer.Deserialize<Team>(jsonTeam,options);
+                //role = JsonSerializer.Deserialize<Role>(jsonRole,options);
+                //team = JsonSerializer.Deserialize<Team>(jsonTeam,options);
 
 
                 socket.Close();

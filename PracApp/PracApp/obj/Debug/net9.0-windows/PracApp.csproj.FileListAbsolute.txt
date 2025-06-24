@@ -170,3 +170,5 @@ C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\PracApp\obj\Debug\net9.0-windows\
 C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\PracApp\obj\Debug\net9.0-windows\Frames\FrameForMainFrame\InformationOfUsersAndActivities.g.cs
 C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\PracApp\obj\Debug\net9.0-windows\Frames\FrameForMainFrame\ChatUsers.baml
 C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\PracApp\obj\Debug\net9.0-windows\Frames\FrameForMainFrame\InformationOfUsersAndActivities.baml
+C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\PracApp\bin\Debug\net9.0-windows\LiveCharts.dll
+C:\SoftWare\Project\Code\Kurs\-PracApp\PracApp\PracApp\bin\Debug\net9.0-windows\LiveCharts.Wpf.dll
