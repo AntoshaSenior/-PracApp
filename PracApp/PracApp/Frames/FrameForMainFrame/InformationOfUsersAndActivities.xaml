@@ -28,7 +28,8 @@
 
         <!-- Правая колонка (можно добавить контент) -->
         <Grid Grid.Column="1">
-            <!--<lvc:PieChart Series="{Binding ProcessTimeSeries}" />-->
+            <lvc:PieChart Series="{Binding ProcessTimeSeries}" DisableAnimations="True" />
+
         </Grid>
     </Grid>
 </Page>

@@ -19,8 +19,13 @@ namespace PracApp.Frames.FrameForMainFrame
         private HashSet<string> runningProcesses = new HashSet<string>();
         private List<ProcessInfo> processLogs = new List<ProcessInfo>();
         private ObservableCollection<ProcessTimeData> processTimeCollection = new ObservableCollection<ProcessTimeData>();
+        private Dictionary<string, PieSeries> seriesLookup = new Dictionary<string, PieSeries>();
 
-        private string[] targetProcesses = { "chrome", "notepad", "krita" };
+        private string[] targetProcesses = { 
+            "chrome","msedge","firefox",
+            "opera","brave","vivaldi",
+            "iexplore" , "notepad", "krita","devenv"
+        };
 
         public InformationOfUsersAndActivities()
         {
@@ -32,22 +37,29 @@ namespace PracApp.Frames.FrameForMainFrame
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
 
-            // Можно стартовать таймер сразу или по кнопке
+            
             // timer.Start();
         }
 
         public void RefreshChart()
         {
-            ProcessTimeSeries.Clear();
-
             foreach (var item in processTimeCollection)
             {
-                ProcessTimeSeries.Add(new PieSeries
+                if (seriesLookup.TryGetValue(item.Name, out var series))
                 {
-                    Title = item.Name,
-                    Values = new ChartValues<double> { item.Hours },
-                    DataLabels = true
-                });
+                    series.Values[0] = item.Hours;
+                }
+                else
+                {
+                    var newSeries = new PieSeries
+                    {
+                        Title = item.Name,
+                        Values = new ChartValues<double> { item.Hours },
+                        DataLabels = true
+                    };
+                    ProcessTimeSeries.Add(newSeries);
+                    seriesLookup[item.Name] = newSeries;
+                }
             }
         }
 
@@ -66,12 +78,12 @@ namespace PracApp.Frames.FrameForMainFrame
         {
             processTimeCollection.Clear();
 
-            // группируем по имени процесса
+            
             var groupedData = new Dictionary<string, double>();
 
             foreach (var p in processLogs)
             {
-                // добавляем время в минуты или часы
+                
                 double hours = p.TotalWorkTime.TotalHours;
                 if (groupedData.ContainsKey(p.ProcessName))
                     groupedData[p.ProcessName] += hours;
@@ -79,7 +91,7 @@ namespace PracApp.Frames.FrameForMainFrame
                     groupedData[p.ProcessName] = hours;
             }
 
-            // создаем элементы коллекции для диаграммы
+            
             foreach (var kvp in groupedData)
             {
                 processTimeCollection.Add(new ProcessTimeData
@@ -94,7 +106,7 @@ namespace PracApp.Frames.FrameForMainFrame
         {
             var processes = Process.GetProcesses();
             
-            // Создаем HashSet идентификаторов текущих запущенных целей процессов
+            
             var currentRunningIds = new HashSet<string>();
             foreach (var proc in processes)
             {
@@ -105,10 +117,10 @@ namespace PracApp.Frames.FrameForMainFrame
                         currentRunningIds.Add(proc.Id.ToString());
                     }
                 }
-                catch { } // Обработка ошибок доступа к свойствам процессов
+                catch { }
             }
 
-            // Обработка процессов, которые еще не зарегистрированы или запущены
+            
             foreach (var proc in processes)
             {
                 try
@@ -120,12 +132,12 @@ namespace PracApp.Frames.FrameForMainFrame
                         var existing = processLogs.Find(p => p.ProcessId == procId);
                         if (existing == null)
                         {
-                            // Новый запущенный процесс
+                           
                             var newProc = new ProcessInfo
                             {
                                 ProcessId = procId,
                                 ProcessName = proc.ProcessName,
-                                StartTime = DateTime.Now, // или proc.StartTime, если хотите
+                                StartTime = DateTime.Now,
                                 ExitMessageShown = false
                             };
                             processLogs.Add(newProc);
@@ -136,35 +148,38 @@ namespace PracApp.Frames.FrameForMainFrame
                 catch { }
             }
 
-            // Обработка завершения процессов
+            
             foreach (var p in new List<ProcessInfo>(processLogs))
             {
                 bool stillRunning = currentRunningIds.Contains(p.ProcessId);
-                // Обновление времени работы
+                
                 if (stillRunning)
                 {
-                    // Обновляем время работы (прибавляем интервал)
+                    
                     if (p.StartTime.HasValue)
                     {
                         p.TotalWorkTime += DateTime.Now - p.StartTime.Value;
-                        p.StartTime = DateTime.Now; // обновляем стартовое время для следующего интервала
+                        p.StartTime = DateTime.Now;
                     }
                 }
                 else
                 {
-                    // Процесс завершился впервые
+                    
                     if (!p.ExitMessageShown)
                     {
                         if (p.StartTime.HasValue)
                         {
                             p.EndTime = DateTime.Now;
-                            p.TotalWorkTime += p.EndTime.Value - p.StartTime.Value; // добавляем финальный интервал
+                            p.TotalWorkTime += p.EndTime.Value - p.StartTime.Value;
                         }
                         logMessages.Add($"Процесс ID: {p.ProcessId} завершился. \nОбщее время работы: {p.TotalWorkTime}");
-                        p.ExitMessageShown = true; // отмечаем, что сообщение выведено
+                        p.ExitMessageShown = true;
                     }
                 }
             }
+            UpdatePieChartData();
+            RefreshChart();
+
         }
     }
     
