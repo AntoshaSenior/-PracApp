@@ -1,6 +1,7 @@
 ﻿using ContextLib.Context.Tables;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -44,15 +45,12 @@ namespace PracApp.Frames
                 if (SendAuthInfo(username, password))
                 {
                     MainPage mp = new MainPage();
-                    mp.User = this.user;
-                    mp.Role = this.role;
-                    mp.Team = this.team;
-                    mp.UserToProject = this.userToProject;
-                    mp.Project = this.project;
-                    mp.Status = this.status;
+
+                    mp.EnterUser(user);
 
 
                     this.NavigationService.Navigate(mp);
+                    
                 }
                     
                 else
@@ -67,46 +65,34 @@ namespace PracApp.Frames
             //this.NavigationService.Navigate(new MainPage(user));
         }
 
-        public bool SendAuthInfo(string username,string password)
+        public bool SendAuthInfo(string username, string password)
         {
-            using var socket = new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
             try
             {
-                string s = string.Concat(username,"\n",password);
-                byte[] buffer = new byte[1024];
+                using TcpClient client = new TcpClient("127.0.0.1", 6666);
+                using NetworkStream stream = client.GetStream();
+                using StreamWriter writer = new StreamWriter(stream, Encoding.UTF8) { AutoFlush = true };
+                using StreamReader reader = new StreamReader(stream, Encoding.UTF8);
 
-                socket.ConnectAsync("127.0.0.1", 6666);
-                buffer = Encoding.UTF8.GetBytes(s);
-                socket.Send(buffer);
+                // Отправка команды авторизации
+                writer.WriteLine("AUTH");
+                writer.WriteLine(username);
+                writer.WriteLine(password);
 
-                buffer = new byte[1024];
-                int recByte = socket.Receive(buffer);
-                string jsonUser = Encoding.UTF8.GetString(buffer).Trim('\0');
-
-                //buffer = new byte[1024];
-                //recByte = socket.Receive(buffer);
-                //string jsonRole = Encoding.UTF8.GetString(buffer).Trim('\0');
-
-                //buffer = new byte[1024];
-                //recByte = socket.Receive(buffer);
-                //string jsonTeam = Encoding.UTF8.GetString(buffer).Trim('\0');
-
-                var options = new JsonSerializerOptions
+                // Получение статуса
+                string status = reader.ReadLine();
+                if (status == "OK")
                 {
-                    PropertyNameCaseInsensitive = true
-                };
+                    string json = reader.ReadLine();
+                    user = JsonSerializer.Deserialize<User>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                    return true;
+                }
 
-
-                user = JsonSerializer.Deserialize<User>(jsonUser,options);
-                //role = JsonSerializer.Deserialize<Role>(jsonRole,options);
-                //team = JsonSerializer.Deserialize<Team>(jsonTeam,options);
-
-
-                socket.Close();
-                return true;
+                return false;
             }
-            catch
+            catch (Exception ex)
             {
+                MessageBox.Show("Ошибка соединения: " + ex.Message);
                 return false;
             }
         }

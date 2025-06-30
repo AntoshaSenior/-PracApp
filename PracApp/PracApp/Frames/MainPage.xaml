@@ -16,9 +16,9 @@
 
         <Grid Grid.Column="0" Background="Gray">
             <StackPanel x:Name="FuncPanel">
-                <Button Content="_-_" Foreground="White" Style="{StaticResource MaterialDesignFlatButton}"></Button>
-                <Button Style="{StaticResource MaterialDesignFlatButton}"></Button>
-                <Button Style="{StaticResource MaterialDesignFlatButton}"></Button>
+                <Button Content="GR" Foreground="White" Style="{StaticResource MaterialDesignFlatButton}"></Button>
+                <Button Content="CH" Foreground="White" Style="{StaticResource MaterialDesignFlatButton}"></Button>
+                <Button Content="MR" Foreground="White" Style="{StaticResource MaterialDesignFlatButton}"></Button>
             </StackPanel>
         </Grid>
         

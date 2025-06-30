@@ -7,26 +7,24 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Левая колонка (кнопки + ListBox) -->
+        
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <!-- Для кнопок -->
                 <RowDefinition Height="*"/>
-                <!-- Для ListBox -->
             </Grid.RowDefinitions>
 
-            <!-- Кнопки -->
+            
             <StackPanel Grid.Row="0" Orientation="Vertical" Margin="10">
                 <Button x:Name="StartButton" Content="Start Monitoring" Click="StartButton_Click" Margin="5"/>
                 <Button x:Name="StopButton" Content="Stop Monitoring" Click="StopButton_Click" Margin="5"/>
             </StackPanel>
 
-            <!-- ListBox -->
+           
             <ListBox x:Name="LogListBox" Grid.Row="1" Margin="10"/>
         </Grid>
 
-        <!-- Правая колонка (можно добавить контент) -->
+        
         <Grid Grid.Column="1">
             <lvc:PieChart Series="{Binding ProcessTimeSeries}" DisableAnimations="True" />
 

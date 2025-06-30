@@ -47,6 +47,7 @@ namespace PracApp.Frames
 
             
             IOU = new InformationOfUsersAndActivities();
+            IOU.us = User;
             NavFrame.Navigate(IOU);
                 
             
@@ -82,6 +83,12 @@ namespace PracApp.Frames
                 
             //}
         }
+        public void EnterUser(User user)
+        {
+            User = user;
+            IOU.us = user;
+        }
+
 
 
  

@@ -13,6 +13,8 @@ namespace ContextLib.Context
         public DbSet<Status> Statuses { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<UserToProject> UserToProjects { get; set; }
+        public DbSet<JsonUserWork> JsonUserWorks { get; set; }
 
 
 
@@ -28,6 +30,10 @@ namespace ContextLib.Context
                 // Добавьте эту строку для подключения к PostgreSQL
                 optionsBuilder.UseNpgsql(configuration.GetConnectionString("PostgresConnection"));
             }
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserToProject>().HasNoKey();
         }
     }
 }

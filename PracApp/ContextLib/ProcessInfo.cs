@@ -14,7 +14,7 @@ namespace ContextLib
         public DateTime? EndTime { get; set; }
         public TimeSpan TotalWorkTime { get; set; } = TimeSpan.Zero;
 
-        public bool ExitMessageShown { get; set; } = false; // добавляем
+        public bool ExitMessageShown { get; set; } = false;
         public bool IsRunning => EndTime == null;
     }
 }
