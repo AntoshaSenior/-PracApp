@@ -83,23 +83,23 @@ namespace PracApp
             }
         }
 
-        private void Window_Closing(object sender, CancelEventArgs e)
-        {
-            e.Cancel = true;
-            Hide();
-        }
+        //private void Window_Closing(object sender, CancelEventArgs e)
+        //{
+        //    e.Cancel = true;
+        //    Hide();
+        //}
 
-        private void RestoreWindow_Click(object sender, RoutedEventArgs e)
-        {
-            Show();
-            WindowState = WindowState.Normal;
-        }
+        //private void RestoreWindow_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Show();
+        //    WindowState = WindowState.Normal;
+        //}
 
-        private void Exit_Click(object sender, RoutedEventArgs e)
-        {
-            TrayIcon.Dispose();
-            Application.Current.Shutdown();
-        }
+        //private void Exit_Click(object sender, RoutedEventArgs e)
+        //{
+        //    TrayIcon.Dispose();
+        //    Application.Current.Shutdown();
+        //}
 
         private void CloseAppButt_Click(object sender, RoutedEventArgs e)
         {

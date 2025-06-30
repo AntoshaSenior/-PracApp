@@ -92,21 +92,21 @@ namespace PracApp.Frames.FrameForMainFrame
                 string? response = await reader.ReadLineAsync();
                 if (response != null && response.StartsWith("OK"))
                 {
-                    logMessages.Add("📡 Данные успешно отправлены");
-                    processLogs.Clear(); // Чтобы не дублировать при следующей отправке
+                    logMessages.Add("Данные успешно отправлены");
+                    processLogs.Clear();
                 }
                 else
                 {
-                    logMessages.Add($"⚠️ Ответ сервера: {response ?? "нет ответа"}");
+                    logMessages.Add($"Ответ сервера: {response ?? "нет ответа"}");
                 }
             }
             catch (TimeoutException)
             {
-                logMessages.Add("⏳ Превышено время ожидания");
+                logMessages.Add("Превышено время ожидания");
             }
             catch (Exception ex)
             {
-                logMessages.Add($"💥 Ошибка: {ex.Message}");
+                logMessages.Add($"Ошибка: {ex.Message}");
             }
         }
 
@@ -148,7 +148,7 @@ namespace PracApp.Frames.FrameForMainFrame
                         ExitMessageShown = false
                     });
 
-                    logMessages.Add($"Запущен {proc.ProcessName} (ID: {proc.Id}) в {DateTime.Now}");
+                    logMessages.Add($"Запущен {proc.ProcessName} \n(ID: {proc.Id}) в {DateTime.Now}");
                 }
             }
 
@@ -169,7 +169,7 @@ namespace PracApp.Frames.FrameForMainFrame
                         p.TotalWorkTime += p.EndTime.Value - p.StartTime.Value;
                     }
 
-                    logMessages.Add($"Процесс ID: {p.ProcessId} завершился. Общее время работы: {p.TotalWorkTime}");
+                    logMessages.Add($"Процесс ID: {p.ProcessId} завершился. \nОбщее время работы: {p.TotalWorkTime}");
                     p.ExitMessageShown = true;
                 }
             }
@@ -206,17 +206,20 @@ namespace PracApp.Frames.FrameForMainFrame
         {
             foreach (var item in processTimeCollection)
             {
+                double formattedValue = Math.Round(item.Hours, 6); 
+
                 if (seriesLookup.TryGetValue(item.Name, out var series))
                 {
-                    series.Values[0] = item.Hours;
+                    series.Values[0] = formattedValue;
                 }
                 else
                 {
                     var newSeries = new PieSeries
                     {
                         Title = item.Name,
-                        Values = new ChartValues<double> { item.Hours },
-                        DataLabels = true
+                        Values = new ChartValues<double> { formattedValue },
+                        DataLabels = true,
+                        LabelPoint = point => $"{point.Y:N4}" 
                     };
                     ProcessTimeSeries.Add(newSeries);
                     seriesLookup[item.Name] = newSeries;
@@ -233,7 +236,7 @@ namespace PracApp.Frames.FrameForMainFrame
 
             try
             {
-                if (proc.WorkingSet64 > 200 * 1024 * 1024) // >200MB
+                if (proc.WorkingSet64 > 200 * 1024 * 1024)
                     return true;
             }
             catch { }

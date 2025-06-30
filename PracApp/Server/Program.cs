@@ -17,7 +17,7 @@ namespace Server
         {
             TcpListener server = new TcpListener(IPAddress.Any, 6666);
             server.Start();
-            Console.WriteLine("📡 Сервер запущен и слушает порт 6666");
+            Console.WriteLine("Сервер запущен и слушает порт 6666");
 
             while (true)
             {
@@ -47,13 +47,13 @@ namespace Server
                         break;
 
                     default:
-                        Console.WriteLine($"⚠️ Неизвестная команда: {command}");
+                        Console.WriteLine($"Неизвестная команда: {command}");
                         break;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("💥 Ошибка при обработке клиента: " + ex.Message);
+                Console.WriteLine("Ошибка при обработке клиента: " + ex.Message);
             }
             finally
             {
@@ -80,12 +80,12 @@ namespace Server
                 string json = JsonSerializer.Serialize(user);
                 await writer.WriteLineAsync("OK");
                 await writer.WriteLineAsync(json);
-                Console.WriteLine($"🔑 Авторизация: {username} (ID: {user.ID})");
+                Console.WriteLine($"Авторизация: {username} (ID: {user.ID})");
             }
             else
             {
                 await writer.WriteLineAsync("ERROR");
-                Console.WriteLine($"❌ Авторизация не удалась: {username}");
+                Console.WriteLine($"Авторизация не удалась: {username}");
             }
         }
 
@@ -152,13 +152,13 @@ namespace Server
                 await db.SaveChangesAsync();
 
                 await writer.WriteLineAsync("OK");
-                Console.WriteLine($"✅ Сохранено JSON от пользователя {userId}");
+                Console.WriteLine($"Сохранено JSON от пользователя {userId}");
             }
             catch (Exception ex)
             {
                 string err = ex.InnerException?.Message ?? ex.Message;
                 await writer.WriteLineAsync($"ERROR: {err}");
-                Console.WriteLine($"❌ Ошибка: {err}");
+                Console.WriteLine($"Ошибка: {err}");
             }
         }
 
